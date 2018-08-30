@@ -1,0 +1,16 @@
+ @import '../../styles/themes';
+ @import '~@nebular/theme/styles/global/bootstrap/buttons';
+
+ @include nb-install-component() {
+   .full-width {
+     width: 100%;
+   }
+
+   .centered-text {
+     text-align: center;
+   }
+
+   .gray-colored {
+     color: gray;
+   }
+ }

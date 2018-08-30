@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import {LoginComponent} from './components/login/login.component';
+import {RegisterComponent} from './components/register/register.component';
+
 import {
   NbActionsModule,
   NbCardModule,
@@ -84,6 +87,8 @@ const COMPONENTS = [
   SampleLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
+  LoginComponent,
+  RegisterComponent,
 ];
 
 const ENTRY_COMPONENTS = [
