@@ -9,6 +9,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 import { DataModule } from './data/data.module';
 import { AnalyticsService } from './utils/analytics.service';
 import { CoreStoreModule } from './store/corestore.module';
+import {LoginService} from './data/login.service';
 
 export class NbSimpleRoleProvider extends NbRoleProvider {
   getRole() {
@@ -84,6 +85,7 @@ export const NB_CORE_PROVIDERS = [
     provide: NbRoleProvider, useClass: NbSimpleRoleProvider,
   },
   AnalyticsService,
+  LoginService,
 ];
 
 @NgModule({
