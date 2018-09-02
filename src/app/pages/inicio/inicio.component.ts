@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {IAppState} from '../../@core/store/app.reducer';
 import * as auth from '../../@core/store/auth';
+import {getId} from '../../@core/store/user';
 
 @Component({
   selector: 'ngx-inicio',
@@ -11,11 +12,8 @@ import * as auth from '../../@core/store/auth';
 export class InicioComponent implements OnInit {
   constructor(private store: Store<IAppState>) {
   }
+
   ngOnInit(): void {
-    this.store.dispatch(new auth.SignIn({
-      access_token: 'hey',
-      refresh_token: 'hey2',
-    }));
   }
 
   onClickedButton(): void {
@@ -32,6 +30,11 @@ export class InicioComponent implements OnInit {
       this.store.pipe(select(auth.getRefreshToken))
         .subscribe(refresh_token => {
           alert('Refresh: ' + refresh_token);
+        });
+
+      this.store.pipe(select(getId))
+        .subscribe(id => {
+          alert('Id: ' + id);
         });
   }
 }

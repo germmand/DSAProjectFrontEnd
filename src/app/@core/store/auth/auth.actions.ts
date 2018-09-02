@@ -9,9 +9,9 @@ export enum AuthActions {
 
 export class SignIn implements Action {
   readonly type = AuthActions.SIGN_IN;
-  readonly payload: IAuth;
+  readonly payload: any;
 
-  constructor(payload: IAuth) {
+  constructor(payload: any) {
     this.payload = payload;
   }
 }
@@ -22,9 +22,9 @@ export class SignOut implements Action {
 
 export class SignUp implements Action {
   readonly type = AuthActions.SIGN_UP;
-  readonly payload: IAuth;
+  readonly payload: any;
 
-  constructor(payload: IAuth) {
+  constructor(payload: any) {
     this.payload = payload;
   }
 }
