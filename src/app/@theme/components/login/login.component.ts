@@ -16,6 +16,8 @@ import {catchError, delay, switchMap} from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
+  public requestResponseMessage: string;
+  public responseAlertClasses: any;
   public requestMade: boolean;
 
   constructor(private loginService: LoginService,
@@ -25,7 +27,14 @@ export class LoginComponent implements OnInit {
       email: new FormControl('email@email.com'),
       password: new FormControl('my_shitty_password'),
     });
+
+    this.requestResponseMessage = '';
     this.requestMade = false;
+    this.responseAlertClasses = {
+      'alert': true,
+      'alert-success': false,
+      'alert-danger': false,
+    };
   }
 
   ngOnInit(): void {
@@ -38,6 +47,8 @@ export class LoginComponent implements OnInit {
   }
 
   onLoggingIn() {
+    this.requestMade = true;
+
     this.loginService.onLogin(this.loginForm)
       .pipe(switchMap(response => {
         this.store.dispatch(new auth.SignIn({
@@ -52,11 +63,33 @@ export class LoginComponent implements OnInit {
           role: response.user.role,
         }));
 
+        this.requestResponseMessage = response.message;
+        this.responseAlertClasses = {
+          ...this.responseAlertClasses,
+          'alert-success': true,
+          'alert-danger': false,
+        };
+
         return observableOf({ successful: true });
-      }), catchError(error => {
+      }), catchError(exception => {
+        this.requestResponseMessage = exception.status !== 0
+          ? exception.error.error
+          : 'Servidor en mantenimiento, volveremos pronto...';
+
+        this.responseAlertClasses = {
+          ...this.responseAlertClasses,
+          'alert-success': false,
+          'alert-danger': true,
+        };
+
         return observableOf({ successful: false });
       }))
       .subscribe(request => {
+        // If the request was successful,
+        // the button will remain disabled; otherwise, it'll be activated back.
+        // requestMade is the variable linked to the [disabled] attribute of the submit button.
+        this.requestMade = request.successful;
+
         if (request.successful) {
           this.router.navigate(['/pages/inicio']);
         }
