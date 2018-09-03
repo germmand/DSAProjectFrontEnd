@@ -1,5 +1,4 @@
 import {Action} from '@ngrx/store';
-import {IAuth} from './auth.reducer';
 
 export enum AuthActions {
   SIGN_IN = '[Auth] SIGN IN',

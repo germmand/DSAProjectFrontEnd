@@ -52,6 +52,7 @@ import {
 import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
+import {LogoutComponent} from './components/logout/logout.component';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -89,6 +90,7 @@ const COMPONENTS = [
   TwoColumnsLayoutComponent,
   LoginComponent,
   RegisterComponent,
+  LogoutComponent,
 ];
 
 const ENTRY_COMPONENTS = [

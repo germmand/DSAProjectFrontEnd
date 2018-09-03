@@ -1,7 +1,21 @@
  @import '../../styles/themes';
  @import '~@nebular/theme/styles/global/bootstrap/buttons';
 
+ @mixin bordered-message($color) {
+   border-radius: 5px;
+   border: solid $color;
+   padding: 20px 5px 5px 20px;
+ }
+
  @include nb-install-component() {
+   .error-bordered-message {
+     @include bordered-message(#420000);
+   }
+
+   .success-bordered-message {
+     @include bordered-message(#00420c);
+   }
+
    .full-width {
      width: 100%;
    }
