@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {LoginService} from '../../../@core/data/login.service';
+import {AuthService} from '../../../@core/data/auth.service';
 import {IAppState} from '../../../@core/store/app.reducer';
 import {Store, select} from '@ngrx/store';
 import {Router} from '@angular/router';
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   public responseAlertClasses: any;
   public requestMade: boolean;
 
-  constructor(private loginService: LoginService,
+  constructor(private authService: AuthService,
               private router: Router,
               private store: Store<IAppState>) {
     this.loginForm = new FormGroup({
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
   onLoggingIn() {
     this.requestMade = true;
 
-    this.loginService.onLogin(this.loginForm)
+    this.authService.onLogin(this.loginForm)
       .pipe(switchMap(response => {
         this.store.dispatch(new auth.SignIn({
           access_token: response.access_token,

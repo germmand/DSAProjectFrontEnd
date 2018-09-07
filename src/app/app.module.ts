@@ -14,9 +14,19 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LogoutComponent } from './@theme/components/logout/logout.component';
+import { RegisterComponent } from './@theme/components/register/register.component';
+import { LoginComponent } from './@theme/components/login/login.component';
+
+const BASE_COMPONENTS = [
+  AppComponent,
+  LoginComponent,
+  RegisterComponent,
+  LogoutComponent,
+];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [...BASE_COMPONENTS],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
