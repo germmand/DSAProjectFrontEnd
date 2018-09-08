@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   onRegistration(registrationForm: FormGroup): Observable<any> {
-    return this.http.post(GetEndPointFullPath('/users'),
+    return this.http.post(GetEndPointFullPath('/users/'),
                           registrationForm.value,
                           this.httpOptions);
   }

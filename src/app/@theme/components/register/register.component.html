@@ -9,6 +9,15 @@
           </div>
         </div>
       </div>
+      <div class="row" *ngIf="responseMessage != ''">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <div [ngClass]="alertResponseClasses">
+              {{ responseMessage }}
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-sm-12">
           <div class="form-group">
@@ -49,7 +58,7 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary full-width" (click)="onSignUp()">Registrar</button>
+      <button [disabled]="requestMade" type="submit" class="btn btn-primary full-width" (click)="onSignUp()">Registrar</button>
     </form>
   </div>
 </div>
