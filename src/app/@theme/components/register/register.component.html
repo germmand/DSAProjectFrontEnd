@@ -21,40 +21,60 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Cédula: V-12345678" formControlName="cid" />
+            <input type="text" class="form-control" placeholder="Cédula: V-12345678" formControlName="cid" [ngClass]="{'custom-is-invalid': registrationFormSubmitted && registrationForm.cid.errors}"/>
+            <div *ngIf="registrationFormSubmitted && registrationForm.cid.errors" class="custom-invalid-feedback">
+              <div *ngIf="registrationForm.cid.errors.required">La cédula es requerida.</div>
+            </div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Nombres" formControlName="firstName"/>
+            <input type="text" class="form-control" placeholder="Nombres" formControlName="firstName" [ngClass]="{'custom-is-invalid': registrationFormSubmitted && registrationForm.firstName.errors}"/>
+            <div *ngIf="registrationFormSubmitted && registrationForm.firstName.errors" class="custom-invalid-feedback">
+              <div *ngIf="registrationForm.firstName.errors.required">El nombre es requerido.</div>
+            </div>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Apellidos" formControlName="lastName"/>
+            <input type="text" class="form-control" placeholder="Apellidos" formControlName="lastName" [ngClass]="{'custom-is-invalid': registrationFormSubmitted && registrationForm.lastName.errors}"/>
+            <div *ngIf="registrationFormSubmitted && registrationForm.lastName.errors" class="custom-invalid-feedback">
+              <div *ngIf="registrationForm.lastName.errors.required">El apellido es requerido.</div>
+            </div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12">
           <div class="form-group">
-            <input type="email" class="form-control" placeholder="Email" formControlName="email"/>
+            <input type="email" class="form-control" placeholder="Email" formControlName="email" [ngClass]="{'custom-is-invalid': registrationFormSubmitted && registrationForm.email.errors}"/>
+            <div *ngIf="registrationFormSubmitted && registrationForm.email.errors" class="custom-invalid-feedback">
+              <div *ngIf="registrationForm.email.errors.required">El correo es requerido.</div>
+              <div *ngIf="registrationForm.email.errors.email">El correo debe tener un formato válido.</div>
+            </div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12">
           <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" formControlName="password"/>
+            <input type="password" class="form-control" placeholder="Password" formControlName="password" [ngClass]="{'custom-is-invalid': registrationFormSubmitted && registrationForm.password.errors}"/>
+            <div *ngIf="registrationFormSubmitted && registrationForm.password.errors" class="custom-invalid-feedback">
+              <div *ngIf="registrationForm.password.errors.required">La contraseña es requerida.</div>
+              <div *ngIf="registrationForm.password.errors.minlength">La contraseña debe tener al menos una longitud de 6 caracteres.</div>
+            </div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12">
           <div class="form-group">
-            <input type="password" class="form-control" placeholder="Repeat Password" formControlName="confirmationPassword"/>
+            <input type="password" class="form-control" placeholder="Repeat Password" formControlName="confirmationPassword" [ngClass]="{'custom-is-invalid': registrationFormSubmitted && registrationForm.confirmationPassword.errors}"/>
+            <div *ngIf="registrationFormSubmitted && registrationForm.confirmationPassword.errors" class="custom-invalid-feedback">
+              <div *ngIf="registrationForm.confirmationPassword.errors.required">Este campo es requerido.</div>
+            </div>
           </div>
         </div>
       </div>

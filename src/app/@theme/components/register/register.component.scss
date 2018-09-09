@@ -13,4 +13,15 @@
   .gray-colored {
     color: gray;
   }
+
+  .custom-invalid-feedback > * {
+    color: #ad0404;
+  }
+
+  .custom-is-invalid {
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #ad0404;
+    border-width: 2px;
+  }
 }

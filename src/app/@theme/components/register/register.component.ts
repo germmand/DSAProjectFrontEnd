@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../@core/data/auth.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RolesService } from '../../../@core/data/roles.service';
 import { of as observableOf } from 'rxjs';
@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
   public responseMessage: string;
   public alertResponseClasses: any;
   public requestMade: boolean;
+  public registrationFormSubmitted: boolean;
 
   // This may be removed in the future for better implementation...
   private studentId: number;
@@ -24,23 +25,25 @@ export class RegisterComponent implements OnInit {
               private roleService: RolesService,
               private router: Router) {
     this.registrationLayoutForm = new FormGroup({
-      firstName: new FormControl(''),
-      lastName: new FormControl(''),
-      cid: new FormControl(''),
-      email: new FormControl(''),
-      password: new FormControl(''),
-      confirmationPassword: new FormControl(''),
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+      cid: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      confirmationPassword: new FormControl('', [Validators.required]),
     });
 
     this.studentId = null;
     this.responseMessage = '';
     this.requestMade = false;
+    this.registrationFormSubmitted = false;
     this.alertResponseClasses = {
       'alert': true,
       'alert-success': false,
       'alert-danger': false,
     };
   }
+
 
   ngOnInit(): void {
     this.requestMade = true;
@@ -53,6 +56,12 @@ export class RegisterComponent implements OnInit {
   }
 
   onSignUp() {
+    this.registrationFormSubmitted = true;
+
+    if (!this.registrationLayoutForm.valid) {
+      return;
+    }
+
     this.requestMade = true;
 
     this.authService.onRegistration(this.castRegistrationForm())
@@ -90,6 +99,10 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['/auth/login']);
         }
       });
+  }
+
+  get registrationForm(): any {
+    return this.registrationLayoutForm.controls;
   }
 
   // The returned form is the one sent to the API.
