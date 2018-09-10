@@ -71,9 +71,10 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="form-group">
-            <input type="password" class="form-control" placeholder="Repeat Password" formControlName="confirmationPassword" [ngClass]="{'custom-is-invalid': registrationFormSubmitted && registrationForm.confirmationPassword.errors}"/>
-            <div *ngIf="registrationFormSubmitted && registrationForm.confirmationPassword.errors" class="custom-invalid-feedback">
-              <div *ngIf="registrationForm.confirmationPassword.errors.required">Este campo es requerido.</div>
+            <input type="password" class="form-control" placeholder="Repeat Password" formControlName="confirmationPassword" [ngClass]="{'custom-is-invalid': registrationFormSubmitted && (registrationForm.confirmationPassword.errors || registrationLayoutForm.errors?.matchpassword)}"/>
+            <div *ngIf="registrationFormSubmitted && (registrationForm.confirmationPassword.errors || registrationLayoutForm.errors?.matchpassword)" class="custom-invalid-feedback">
+              <div *ngIf="registrationForm.confirmationPassword.errors?.required">Este campo es requerido.</div>
+              <div *ngIf="registrationLayoutForm.errors?.matchpassword">La contraseña no coincide con la anterior.</div>
             </div>
           </div>
         </div>

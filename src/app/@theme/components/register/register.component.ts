@@ -1,10 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../@core/data/auth.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RolesService } from '../../../@core/data/roles.service';
 import { of as observableOf } from 'rxjs';
 import { catchError, delay, switchMap } from 'rxjs/operators';
+
+export function MatchPasswordValidator(): ValidatorFn {
+  return (formGroup: AbstractControl): {[key: string]: any} | null => {
+    const password = formGroup.value['password'];
+    const repeatedPassword = formGroup.value['confirmationPassword'];
+
+    return password !== repeatedPassword
+      ? { matchpassword: true }
+      : null;
+  };
+}
 
 @Component({
   selector: 'ngx-register',
@@ -31,7 +42,9 @@ export class RegisterComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       confirmationPassword: new FormControl('', [Validators.required]),
-    });
+    }, [
+      MatchPasswordValidator(),
+    ]);
 
     this.studentId = null;
     this.responseMessage = '';
