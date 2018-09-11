@@ -1,8 +1,8 @@
-<nb-card>
-    <nb-card-header>Simple card to get started!</nb-card-header>
-    <nb-card-body>
-        <h2>Hello from Inicio! :D</h2>
-        <br />
-        <button class='btn btn-hero-primary' (click)='onClickedButton()'>Click me!</button>
-    </nb-card-body>
-</nb-card>
+<div class="row">
+  <div class="col-sm-3" *ngFor="let descriptor of descriptors">
+    <ngx-descriptor-card [title]="descriptor.title"
+                         [description]="descriptor.description"
+                         [image]="descriptor.image">
+    </ngx-descriptor-card>
+  </div>
+</div>

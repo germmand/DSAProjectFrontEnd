@@ -1,0 +1,59 @@
+@import '../../../@theme/styles/themes';
+@import '~@nebular/theme/styles/global/bootstrap/buttons';
+
+@mixin flex-card() {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@mixin background-image-card() {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0;
+}
+
+@mixin descriptor-text() {
+  color: white;
+  text-align: center;
+  @content;
+}
+
+@include nb-install-component() {
+  .custom-body-card {
+    @include background-image-card();
+    height: 35vh;
+  }
+
+  .descriptor-title {
+    span {
+      @include descriptor-text() {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .descriptor-body {
+    span {
+      @include descriptor-text() {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .darken-background {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: inherit;
+    @include flex-card();
+  }
+
+  hr {
+    background-color: white;
+    border-color: white;
+    color: white;
+  }
+}
