@@ -1,8 +1,8 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy} from '@nebular/auth';
+import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
 import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { of as observableOf } from 'rxjs';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
@@ -20,9 +20,9 @@ export class NbSimpleRoleProvider extends NbRoleProvider {
   }
 }
 
-export const APP_INTERCEPTORS = [
-  TokenInterceptor,
-];
+export const APP_INTERCEPTORS = [{
+  provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true,
+}];
 
 export const NB_CORE_PROVIDERS = [
   ...DataModule.forRoot().providers,
