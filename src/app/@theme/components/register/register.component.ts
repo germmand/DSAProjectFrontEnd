@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.requestMade = true;
 
-    this.roleService.getRoleByName('Estudiante')
+    this.roleService.getStudentRole()
       .subscribe(response => {
         this.studentId = response.role.id;
         this.requestMade = false;

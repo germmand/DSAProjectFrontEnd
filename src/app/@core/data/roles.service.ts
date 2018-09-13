@@ -8,7 +8,7 @@ export class RolesService {
   constructor(private http: HttpClient) {
   }
 
-  getRoleByName(rolename: string): Observable<any> {
-    return this.http.get(GetEndPointFullPath('/roles/' + rolename));
+  getStudentRole(): Observable<any> {
+    return this.http.get(GetEndPointFullPath('/roles/student'));
   }
 }

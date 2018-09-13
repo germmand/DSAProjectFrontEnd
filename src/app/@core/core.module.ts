@@ -11,6 +11,7 @@ import { AnalyticsService } from './utils/analytics.service';
 import { CoreStoreModule } from './store/corestore.module';
 import { AuthService } from './data/auth.service';
 import { RolesService } from './data/roles.service';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 export class NbSimpleRoleProvider extends NbRoleProvider {
   getRole() {
@@ -18,6 +19,10 @@ export class NbSimpleRoleProvider extends NbRoleProvider {
     return observableOf('guest');
   }
 }
+
+export const APP_INTERCEPTORS = [
+  TokenInterceptor,
+];
 
 export const NB_CORE_PROVIDERS = [
   ...DataModule.forRoot().providers,
@@ -85,6 +90,7 @@ export const NB_CORE_PROVIDERS = [
   {
     provide: NbRoleProvider, useClass: NbSimpleRoleProvider,
   },
+  ...APP_INTERCEPTORS,
   AnalyticsService,
   AuthService,
   RolesService,
