@@ -6,7 +6,7 @@ import { GetEndPointFullPath } from '../utils/api.config';
 import { IAppState } from '../store/app.reducer';
 import { select, Store } from '@ngrx/store';
 import { getRefreshToken } from '../store/auth';
-import { switchMap } from 'rxjs/operators';
+import { first, switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
@@ -36,6 +36,7 @@ export class AuthService {
   onRefreshToken(): Observable<any> {
     return this.store.pipe(
       select(getRefreshToken),
+      first(),
       switchMap(refresh_token => {
           return this.http.get(GetEndPointFullPath('/auth/refresh'), {
             headers: new HttpHeaders({

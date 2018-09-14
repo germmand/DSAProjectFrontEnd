@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     this.requestMade = true;
 
     this.authService.onLogin(this.loginForm)
-      .pipe(switchMap(response => {
+      .subscribe(response => {
         this.store.dispatch(new auth.SignIn({
           access_token: response.access_token,
           refresh_token: response.refresh_token,
@@ -70,8 +70,10 @@ export class LoginComponent implements OnInit {
           'alert-danger': false,
         };
 
-        return observableOf({ successful: true });
-      }), catchError(exception => {
+        this.router.navigate(['/pages/inicio']);
+      }, exception => {
+        this.requestMade = false;
+
         this.requestResponseMessage = exception.status !== 0
           ? exception.error.error
           : 'Servidor en mantenimiento, volveremos pronto...';
@@ -81,18 +83,6 @@ export class LoginComponent implements OnInit {
           'alert-success': false,
           'alert-danger': true,
         };
-
-        return observableOf({ successful: false });
-      }))
-      .subscribe(request => {
-        // If the request was successful,
-        // the button will remain disabled; otherwise, it'll be activated back.
-        // requestMade is the variable linked to the [disabled] attribute of the submit button.
-        this.requestMade = request.successful;
-
-        if (request.successful) {
-          this.router.navigate(['/pages/inicio']);
-        }
       });
   }
 }

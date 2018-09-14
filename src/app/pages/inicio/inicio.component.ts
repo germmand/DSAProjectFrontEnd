@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {select, Store} from '@ngrx/store';
-import {IAppState} from '../../@core/store/app.reducer';
+import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { IAppState } from '../../@core/store/app.reducer';
 import * as auth from '../../@core/store/auth';
-import {getId} from '../../@core/store/user';
+import { getId } from '../../@core/store/user';
+import { AdmissionsService } from '../../@core/data/admissions.service';
 
 @Component({
   selector: 'ngx-inicio',
@@ -28,31 +29,16 @@ export class InicioComponent implements OnInit {
     image: 'assets/images/teamwork.jpg',
   }];
 
-  constructor(private store: Store<IAppState>) {
+  constructor(private store: Store<IAppState>,
+              private admissionsService: AdmissionsService) {
   }
 
   ngOnInit(): void {
-  }
-
-  onClickedButton(): void {
-      this.store.pipe(select('auth'))
-        .subscribe(data => {
-          alert('Access: ' + data.access_token + '\nRefresh: ' + data.refresh_token);
-        });
-
-      this.store.pipe(select(auth.getAccessToken))
-        .subscribe(access_token => {
-          alert('Access: ' + access_token);
-        });
-
-      this.store.pipe(select(auth.getRefreshToken))
-        .subscribe(refresh_token => {
-          alert('Refresh: ' + refresh_token);
-        });
-
-      this.store.pipe(select(getId))
-        .subscribe(id => {
-          alert('Id: ' + id);
-        });
+   this.admissionsService.onGetAdmissionsStatuses()
+      .subscribe(response => {
+        alert('SUCCESS');
+      }, error => {
+        alert('ERROR');
+      });
   }
 }
