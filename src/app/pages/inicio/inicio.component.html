@@ -6,3 +6,15 @@
     </ngx-descriptor-card>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-sm-4" *ngFor="let state of states">
+    <ngx-states-card [type]="state.type"
+                     [title]="state.title"
+                     [quantity]="state.quantity"
+                     [iconClassFront]="state.iconClassFront"
+                     [iconClassBack]="state.iconClassBack"
+                     [backText]="state.backText">
+    </ngx-states-card>
+  </div>
+</div>

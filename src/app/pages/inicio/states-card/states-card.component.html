@@ -1,0 +1,21 @@
+<nb-flip-card [showToggleButton]="false" [flipped]="flipped">
+  <nb-card-front>
+   <nb-card>
+     <ngx-states-card-front [type]="type"
+                            [title]="title"
+                            [quantity]="quantity">
+       <i class="{{ iconClassFront }}" ngProjectAs="card-status-logo"></i>
+       <i class="nb-arrow-right" (click)="onToggleFlip()"></i>
+     </ngx-states-card-front>
+   </nb-card>
+  </nb-card-front>
+  <nb-card-back>
+   <nb-card>
+     <ngx-states-card-back [type]="type"
+                           [backText]="backText">
+       <i class="{{ iconClassBack }}" ngProjectAs="card-status-logo"></i>
+       <i class="nb-arrow-right" (click)="onToggleFlip()"></i>
+     </ngx-states-card-back>
+   </nb-card>
+  </nb-card-back>
+</nb-flip-card>

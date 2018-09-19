@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { IAppState } from '../../@core/store/app.reducer';
-import * as auth from '../../@core/store/auth';
-import { getId } from '../../@core/store/user';
 import { AdmissionsService } from '../../@core/data/admissions.service';
 
 @Component({
@@ -29,6 +27,29 @@ export class InicioComponent implements OnInit {
     image: 'assets/images/teamwork.jpg',
   }];
 
+  public states: any[] = [{
+    title: 'Aceptadas',
+    quantity: 0,
+    type: 'primary',
+    iconClassFront: 'nb-lightbulb',
+    iconClassBack: 'fa fa-grin',
+    backText: `Contador de postgrados inscritos y aceptados.`,
+  }, {
+    title: 'Declinadas',
+    quantity: 0,
+    type: 'danger',
+    iconClassFront: 'nb-close-circled',
+    iconClassBack: 'fa fa-angry',
+    backText: `Contador de postgrados inscritos y rechazados.`,
+  }, {
+    title: 'En revisión',
+    quantity: 0,
+    type: 'warning',
+    iconClassFront: 'nb-loop-circled',
+    iconClassBack: 'fa fa-user-clock',
+    backText: `Contador de postgrados inscritos y en espera de aceptación.`,
+  }];
+
   constructor(private store: Store<IAppState>,
               private admissionsService: AdmissionsService) {
   }
@@ -36,9 +57,11 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
    this.admissionsService.onGetAdmissionsStatuses()
       .subscribe(response => {
-        alert('SUCCESS');
+        this.states[0].quantity = response.accepted;
+        this.states[1].quantity = response.declined;
+        this.states[2].quantity = response.review;
       }, error => {
-        alert('ERROR');
+
       });
   }
 }

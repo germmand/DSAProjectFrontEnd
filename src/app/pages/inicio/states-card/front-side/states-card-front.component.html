@@ -1,0 +1,15 @@
+<div class="flip-card">
+  <ng-content select="i.nb-arrow-right"></ng-content>
+</div>
+<div class="inner-card">
+  <div class="icon-container">
+    <div class="icon {{ type }}">
+      <ng-content select="card-status-logo"></ng-content>
+    </div>
+  </div>
+
+  <div class="details">
+    <div class="title">{{ title }}</div>
+    <div class="quantity">{{ quantity }}</div>
+  </div>
+</div>
