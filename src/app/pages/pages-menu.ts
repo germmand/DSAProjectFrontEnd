@@ -8,6 +8,25 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'POSTGRADOS',
+    group: true,
+  },
+  {
+    title: 'Programas',
+    icon: 'nb-roller-shades',
+    link: '/pages/programas',
+    children: [
+     {
+       title: 'Áreas',
+       link: '/pages/programas/areas',
+     },
+   ],
+  },
+  {
+    title: 'NB-Prebuilt-Pages',
+    group: true,
+  },
+  {
     title: 'E-commerce',
     icon: 'nb-e-commerce',
     link: '/pages/dashboard',

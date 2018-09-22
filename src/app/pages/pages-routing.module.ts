@@ -20,6 +20,9 @@ const routes: Routes = [{
     path: 'iot-dashboard',
     component: DashboardComponent,
   }, {
+    path: 'programas',
+    loadChildren: './programas/programas.module#ProgramasModule',
+  }, {
     path: 'ui-features',
     loadChildren: './ui-features/ui-features.module#UiFeaturesModule',
   }, {
