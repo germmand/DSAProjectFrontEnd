@@ -1,1 +1,7 @@
-<h2>Hello from Areas Component! :D</h2>
+<div class="row" *ngFor="let areas of areasGrid">
+  <div class="col-sm-6" *ngFor="let area of areas">
+    <hr />
+    <h3>{{ area.areaName }}</h3>
+    <hr />
+  </div>
+</div>
