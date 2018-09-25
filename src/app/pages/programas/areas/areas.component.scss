@@ -1,0 +1,30 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  .dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+
+    @include nb-for-theme(cosmic) {
+      background-color: nb-theme(color-fg-highlight);
+    }
+
+    @include nb-for-theme(default) {
+      background-color: nb-theme(color-fg-highlight);
+    }
+
+    @include nb-for-theme(corporate) {
+      background-color: nb-theme(color-primary);
+    }
+  }
+
+  .card-title {
+  }
+
+  .program-name {
+    font-family: nb-theme(font-secondary);
+  }
+}

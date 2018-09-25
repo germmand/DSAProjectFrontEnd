@@ -1,7 +1,17 @@
 <div class="row" *ngFor="let areas of areasGrid">
   <div class="col-sm-6" *ngFor="let area of areas">
-    <hr />
-    <h3>{{ area.areaName }}</h3>
-    <hr />
+    <nb-card>
+      <nb-card-header>
+        <div class="card-title">{{ area.areaName }}</div>
+      </nb-card-header>
+      <nb-card-body>
+        <div *ngFor="let program of area.areaPrograms">
+          <span class="dot"></span>
+          <a class="program-name" href="#">
+            {{ program.programName }}
+          </a>
+        </div>
+      </nb-card-body>
+    </nb-card>
   </div>
 </div>
