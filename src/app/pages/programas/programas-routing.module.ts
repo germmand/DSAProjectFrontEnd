@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProgramasComponent } from './programas.component';
 import { AreasComponent } from './areas/areas.component';
+import { ProgramaComponent } from './programa/programa.component';
 
 const routes: Routes = [{
   path: '',
@@ -9,6 +10,9 @@ const routes: Routes = [{
   children: [{
     path: 'areas',
     component: AreasComponent,
+  }, {
+    path: 'programa/:id',
+    component: ProgramaComponent,
   }, {
     path: '',
     redirectTo: 'areas',

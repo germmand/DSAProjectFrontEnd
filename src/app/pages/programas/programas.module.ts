@@ -4,10 +4,12 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { ProgramasComponent } from './programas.component';
 import { AreasComponent } from './areas/areas.component';
 import { AreasService } from '../../@core/data/areas.service';
+import { ProgramaComponent } from './programa/programa.component';
 
 const PROGRAMAS_COMPONENTS = [
   ProgramasComponent,
   AreasComponent,
+  ProgramaComponent,
 ];
 
 const PROGRAMAS_PROVIDERS = [
