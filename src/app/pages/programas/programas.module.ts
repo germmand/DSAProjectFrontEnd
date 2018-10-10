@@ -5,6 +5,7 @@ import { ProgramasComponent } from './programas.component';
 import { AreasComponent } from './areas/areas.component';
 import { AreasService } from '../../@core/data/areas.service';
 import { ProgramaComponent } from './programa/programa.component';
+import { ProgramsService } from '../../@core/data/programs.service';
 
 const PROGRAMAS_COMPONENTS = [
   ProgramasComponent,
@@ -14,6 +15,7 @@ const PROGRAMAS_COMPONENTS = [
 
 const PROGRAMAS_PROVIDERS = [
   AreasService,
+  ProgramsService,
 ];
 
 
