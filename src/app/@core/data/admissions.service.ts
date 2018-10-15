@@ -29,4 +29,15 @@ export class AdmissionsService {
       }),
     );
   }
+
+  onCreateAdmission(program_id: number, user_id: string): Observable<any> {
+    const admission_data = {
+      program_id: program_id,
+      user_id: user_id,
+    };
+
+    return this.http.post(GetEndPointFullPath('/admissions'),
+                          admission_data,
+                          this.httpOptions);
+  }
 }
