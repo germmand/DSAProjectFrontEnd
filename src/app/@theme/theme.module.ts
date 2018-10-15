@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {
+  NbAccordionModule,
   NbActionsModule,
   NbCardModule,
   NbLayoutModule,
@@ -53,6 +54,7 @@ import { CORPORATE_THEME } from './styles/theme.corporate';
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
 const NB_MODULES = [
+  NbAccordionModule,
   NbCardModule,
   NbLayoutModule,
   NbTabsetModule,

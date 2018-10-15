@@ -1,1 +1,62 @@
-<h2>Hello from Programa Component! :D</h2>
+<nb-card>
+  <nb-card-header>
+    <div class="title">{{ program.program_name }}</div>
+    <div class="transparent-divider"></div>
+    <div class="sub-title">{{ program.area_name }}</div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="body-title">Grado</div>
+        <div class="body-sub-title">{{ program.degree_type }}</div>
+      </div>
+      <div class="col-sm-6">
+        <div class="body-title">Tipo</div>
+        <div class="body-sub-title">{{ program.type_name }}</div>
+      </div>
+    </div>
+    <hr width="99%"/>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="body-title subjects-separator">Materias</div>
+        <nb-accordion multi>
+          <nb-accordion-item *ngFor="let subject of program.subjects">
+            <nb-accordion-item-header>
+              <div class="body-title">{{ subject.name }}</div>
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="accordion-content-title">Semestre</div>
+                  <div class="accordion-content-sub-title">{{ subject.subject_semester }}</div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="accordion-content-title">Créditos</div>
+                  <div class="accordion-content-sub-title">{{ subject.credits }}</div>
+                </div>
+              </div>
+              <div class="row accordion-content-separator">
+                <div class="col-sm-6">
+                  <div class="accordion-content-title">Semanas</div>
+                  <div class="accordion-content-sub-title">{{ subject.weeks }}</div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="accordion-content-title">Horas/Semana</div>
+                  <div class="accordion-content-sub-title">{{ subject.hours_per_week }}</div>
+                </div>
+              </div>
+              <hr />
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+        </nb-accordion>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <nb-actions size="medium" fullWidth>
+      <nb-action (click)="OnCreateAdmission()">
+        <i class="nb-compose"></i><span>Inscribir</span>
+      </nb-action>
+    </nb-actions>
+  </nb-card-footer>
+</nb-card>

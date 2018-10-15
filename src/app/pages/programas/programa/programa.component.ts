@@ -1,8 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { of as observableOf } from 'rxjs';
 import { ProgramsService } from '../../../@core/data/programs.service';
+
+interface ISubject {
+  id: number;
+  name: string;
+  subject_semester: number;
+  credits: number;
+  weeks: number;
+  hours_per_week: number;
+}
+
+interface IProgram {
+  area_id: number;
+  area_name: string;
+  program_id: number;
+  program_name: number;
+  degree_type: string;
+  type_name: string;
+  subjects: ISubject[];
+}
 
 @Component({
   selector: 'ngx-graduate-program',
@@ -10,6 +28,8 @@ import { ProgramsService } from '../../../@core/data/programs.service';
   styleUrls: ['./programa.component.scss'],
 })
 export class ProgramaComponent implements OnInit {
+  public program: IProgram;
+
   constructor(private route: ActivatedRoute,
               private programService: ProgramsService) {
   }
@@ -23,9 +43,10 @@ export class ProgramaComponent implements OnInit {
         return this.programService.onGetProgram(id);
       }),
     ).subscribe(response => {
-      // console.log(response);
-    }, error => {
-      // console.log(error);
+      this.program = response['program'];
     });
+  }
+
+  OnCreateAdmission() {
   }
 }

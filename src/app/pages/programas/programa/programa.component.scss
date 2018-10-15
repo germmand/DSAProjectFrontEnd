@@ -1,5 +1,86 @@
 @import '../../../@theme/styles/themes';
 
-@include nb-install-component() {
+@mixin titles($size) {
+  font-size: $size;
+  font-weight: nb-theme(font-weight-bold);
+  color: nb-theme(color-fg-heading);
+  @content;
+}
 
+@mixin subtitles($size) {
+  font-size: $size;
+  color: nb-theme(color-fg);
+  @content;
+}
+
+@include nb-install-component() {
+  nb-card-header {
+    .title {
+      @include titles(1.3rem);
+    }
+
+    .sub-title {
+      @include subtitles(1.1rem);
+    }
+
+    .transparent-divider {
+      display: block;
+      height: 5px;
+      margin: 1px;
+    }
+  }
+
+  .body-title {
+    @include titles(1.2rem);
+  }
+
+  .body-sub-title {
+    @include subtitles(1.1rem);
+  }
+
+  .accordion-content-title {
+    @include titles(1.1rem);
+  }
+
+  .accordion-content-sub-title {
+    @include subtitles(1.1rem);
+  }
+
+  .subjects-separator {
+    margin-bottom: 13px;
+  }
+
+  .row.accordion-content-separator {
+    margin-top: 10px;
+  }
+
+  nb-action {
+    padding: 0 0.5rem 0 0;
+
+    i {
+      color: nb-theme(color-fg);
+      font-size: 3rem;
+      margin-right: 0.5rem;
+      transition: color ease-out 0.2s;
+
+      @include nb-for-theme(corporate) {
+        color: nb-theme(actions-fg);
+      }
+    }
+
+    span {
+      font-family: nb-theme(font-secondary);
+      font-weight: nb-theme(font-weight-bold);
+      color: nb-theme(color-fg-heading);
+      text-transform: uppercase;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      i {
+        color: nb-theme(color-fg-heading);
+      }
+    }
+  }
 }
