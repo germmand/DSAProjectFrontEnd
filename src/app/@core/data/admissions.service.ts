@@ -36,7 +36,7 @@ export class AdmissionsService {
       user_id: user_id,
     };
 
-    return this.http.post(GetEndPointFullPath('/admissions'),
+    return this.http.post(GetEndPointFullPath('/admissions/'),
                           admission_data,
                           this.httpOptions);
   }

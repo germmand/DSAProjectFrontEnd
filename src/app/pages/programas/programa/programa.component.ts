@@ -6,6 +6,9 @@ import { AdmissionsService } from '../../../@core/data/admissions.service';
 import { IAppState } from '../../../@core/store/app.reducer';
 import { select, Store } from '@ngrx/store';
 import { getId } from '../../../@core/store/user';
+import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
+
+import 'style-loader!angular2-toaster/toaster.css';
 
 interface ISubject {
   id: number;
@@ -33,12 +36,14 @@ interface IProgram {
 })
 export class ProgramaComponent implements OnInit {
   public program: IProgram;
+  public config: ToasterConfig;
   private user_id: string;
 
   constructor(private route: ActivatedRoute,
               private programService: ProgramsService,
               private admissionsService: AdmissionsService,
-              private store: Store<IAppState>) {
+              private store: Store<IAppState>,
+              private toasterService: ToasterService) {
   }
 
   ngOnInit() {
@@ -51,6 +56,16 @@ export class ProgramaComponent implements OnInit {
       }),
     ).subscribe(response => {
       this.program = response['program'];
+    });
+
+    this.config = new ToasterConfig({
+      positionClass: 'toast-center',
+      timeout: 5000,
+      newestOnTop: true,
+      tapToDismiss: true,
+      preventDuplicates: true,
+      animation: 'slideUp',
+      limit: 2,
     });
   }
 
@@ -66,9 +81,29 @@ export class ProgramaComponent implements OnInit {
       }),
       switchMap(program_id => {
         return this.admissionsService.onCreateAdmission(Number(program_id), this.user_id);
-      })
+      }),
     ).subscribe(response => {
-      console.log(response);
+      const toast: Toast = {
+        type: 'default',
+        title: 'Mensaje',
+        body: response['message'],
+        timeout: 5000,
+        showCloseButton: true,
+        bodyOutputType: BodyOutputType.TrustedHtml,
+      };
+
+      this.toasterService.popAsync(toast);
+    }, exception => {
+      const toast: Toast = {
+        type: 'error',
+        title: 'Mensaje',
+        body: exception.error['error'],
+        timeout: 5000,
+        showCloseButton: true,
+        bodyOutputType: BodyOutputType.TrustedHtml,
+      };
+
+      this.toasterService.popAsync(toast);
     });
   }
 }
