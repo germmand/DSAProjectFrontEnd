@@ -96,7 +96,7 @@ export class ProgramaComponent implements OnInit {
     }, exception => {
       const toast: Toast = {
         type: 'error',
-        title: 'Mensaje',
+        title: 'Error',
         body: exception.error['error'],
         timeout: 5000,
         showCloseButton: true,

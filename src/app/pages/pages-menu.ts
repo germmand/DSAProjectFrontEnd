@@ -16,10 +16,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'nb-roller-shades',
     link: '/pages/programas',
     children: [
-     {
+      {
        title: 'Áreas',
        link: '/pages/programas/areas',
-     },
+      },
+      {
+        title: 'Mis programas',
+        link: '/pages/programas/my-programs',
+      }
    ],
   },
   {

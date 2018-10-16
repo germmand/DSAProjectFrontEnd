@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProgramasComponent } from './programas.component';
 import { AreasComponent } from './areas/areas.component';
 import { ProgramaComponent } from './programa/programa.component';
+import { MyProgramsComponent } from './my-programs/my-programs.component';
 
 const routes: Routes = [{
   path: '',
@@ -13,6 +14,9 @@ const routes: Routes = [{
   }, {
     path: 'programa/:id',
     component: ProgramaComponent,
+  }, {
+    path: 'my-programs',
+    component: MyProgramsComponent,
   }, {
     path: '',
     redirectTo: 'areas',

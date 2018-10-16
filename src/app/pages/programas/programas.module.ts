@@ -7,11 +7,13 @@ import { AreasService } from '../../@core/data/areas.service';
 import { ProgramaComponent } from './programa/programa.component';
 import { ProgramsService } from '../../@core/data/programs.service';
 import { ToasterModule } from 'angular2-toaster';
+import { MyProgramsComponent } from './my-programs/my-programs.component';
 
 const PROGRAMAS_COMPONENTS = [
   ProgramasComponent,
   AreasComponent,
   ProgramaComponent,
+  MyProgramsComponent,
 ];
 
 const PROGRAMAS_PROVIDERS = [
