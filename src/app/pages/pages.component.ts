@@ -5,6 +5,8 @@ import {select, Store} from '@ngrx/store';
 import {IAppState} from '../@core/store/app.reducer';
 import {getAccessToken} from '../@core/store/auth';
 import {Router} from '@angular/router';
+import { getRole } from '../@core/store/user';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'ngx-pages',
@@ -23,6 +25,22 @@ export class PagesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.pipe(
+      select(getRole),
+    ).subscribe(role => {
+      const alreadyAdded = _.findIndex(this.menu, m => m.title === 'PANEL DE ADMINISTRADOR') !== -1;
+      if (role === 'Administrador' && !alreadyAdded) {
+        this.menu.push({
+          title: 'PANEL DE ADMINISTRADOR',
+          group: true,
+        }, {
+          title: 'Nuevas Admisiones',
+          icon: 'nb-compose',
+          link: '/',
+        });
+      }
+    });
+
     this.store.pipe(select(getAccessToken))
       .subscribe(access_token => {
         if (access_token === '') {
