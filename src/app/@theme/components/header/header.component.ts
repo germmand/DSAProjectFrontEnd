@@ -19,10 +19,10 @@ export class HeaderComponent implements OnInit {
   user: any;
 
   userMenu = [{
-    title: 'Profile',
+    title: 'Mi Perfil',
     link: '/' ,
   }, {
-    title: 'Log out',
+    title: 'Cerrar Sesión',
     link: '/auth/logout',
   }];
 
