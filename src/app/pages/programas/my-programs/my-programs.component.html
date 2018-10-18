@@ -1,13 +1,16 @@
 <nb-card>
   <nb-tabset fullWidth>
     <nb-tab tabTitle="En revisión">
-      <div>Revisión</div>
+      <ngx-admission-adapter [admissions]="review_admissions">
+      </ngx-admission-adapter>
     </nb-tab>
     <nb-tab tabTitle="Aceptadas">
-      <div>Aceptadas</div>
+      <ngx-admission-adapter [admissions]="accepted_admissions">
+      </ngx-admission-adapter>
     </nb-tab>
     <nb-tab tabTitle="Declinadas">
-      <div>Declinadas</div>
+      <ngx-admission-adapter [admissions]="declined_admissions">
+      </ngx-admission-adapter>
     </nb-tab>
   </nb-tabset>
 </nb-card>

@@ -1,0 +1,28 @@
+<nb-card *ngFor="let admission of admissions">
+  <nb-card-body>
+    <div class="custom-container">
+      <div class="title">{{ admission.program_name }}</div>
+      <div class="content">Tipo: {{ admission.type }}</div>
+    </div>
+    <div class="custom-container">
+      <div class="content">Semestre: {{ admission.current_semester === 0 ? '-:-' : admission.current_semester}}</div>
+      <div class="inner-container">
+        <span class="dot"
+              [ngClass]="{'primary': admission.status === 'Aceptada',
+                          'warning': admission.status === 'En revisión',
+                          'danger': admission.status === 'Declinada'}">
+        </span>
+        <div class="content">{{ admission.status }}</div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+<div class="no-admissions-container"
+     *ngIf="admissions.length === 0">
+  <div class="icon">
+    <i class="fa fa-grin-beam-sweat"></i>
+  </div>
+  <div class="icon-text text-center">
+    No existen admisiones acá...
+  </div>
+</div>

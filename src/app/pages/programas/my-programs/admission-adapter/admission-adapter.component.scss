@@ -1,0 +1,79 @@
+@import '../../../../@theme/styles/themes';
+@import '~@nebular/theme/styles/global/bootstrap/hero-buttons';
+
+@include nb-install-component() {
+  .title {
+    font-family: nb-theme(font-secondary);
+    font-size: 1.25rem;
+    font-weight: nb-theme(font-weight-bold);
+    color: nb-theme(card-fg-heading);
+  }
+
+  .content {
+    font-size: 1rem;
+    margin-top: 10px;
+    font-weight: nb-theme(font-weight-light);
+    color: nb-theme(card-fg-heading);
+  }
+
+  .dot {
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 8px 6px 0px 0px;
+  }
+
+  .custom-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    & > .inner-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .primary {
+    @include btn-hero-primary-gradient();
+    @include btn-hero-primary-bevel-glow-shadow();
+  }
+  .warning {
+    @include btn-hero-warning-gradient();
+    @include btn-hero-warning-bevel-glow-shadow();
+  }
+  .danger {
+    @include btn-hero-danger-gradient();
+    @include btn-hero-danger-bevel-glow-shadow();
+  }
+
+  nb-card {
+    margin: 10px;
+  }
+
+  .no-admissions-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  $no-admission-content-size: 5.25rem;
+
+  .icon {
+    font-size: $no-admission-content-size;
+    margin-top: 10px;
+    color: nb-theme(color-fg);
+  }
+
+  .icon-text {
+    font-size: $no-admission-content-size;
+    padding: 1.25rem;
+    color: nb-theme(color-fg);
+  }
+}
