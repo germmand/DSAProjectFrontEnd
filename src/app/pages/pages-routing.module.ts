@@ -47,6 +47,9 @@ const routes: Routes = [{
     path: 'miscellaneous',
     loadChildren: './miscellaneous/miscellaneous.module#MiscellaneousModule',
   }, {
+    path: 'admin',
+    loadChildren: './admin/admin.module#AdminModule',
+  }, {
     path: '',
     redirectTo: 'inicio',
     pathMatch: 'full',

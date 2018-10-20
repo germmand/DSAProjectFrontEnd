@@ -36,7 +36,7 @@ export class PagesComponent implements OnInit {
         }, {
           title: 'Nuevas Admisiones',
           icon: 'nb-compose',
-          link: '/',
+          link: '/pages/admin/new-admissions',
         });
       }
     });
