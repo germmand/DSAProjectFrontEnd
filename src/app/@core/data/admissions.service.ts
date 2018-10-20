@@ -45,4 +45,9 @@ export class AdmissionsService {
     return this.http.get(GetEndPointFullPath(`/admissions/users/${user_id}`),
                          this.httpOptions);
   }
+
+  onGetNewAdmissions(): Observable<any> {
+    return this.http.get(GetEndPointFullPath('/admissions/new'),
+                         this.httpOptions);
+  }
 }

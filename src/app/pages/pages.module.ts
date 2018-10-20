@@ -17,7 +17,6 @@ const PAGES_PROVIDERS = [
   AdmissionsService,
 ];
 
-
 @NgModule({
   imports: [
     PagesRoutingModule,
