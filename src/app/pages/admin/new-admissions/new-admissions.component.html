@@ -1,1 +1,56 @@
-<h2>Hello from new admissions! :D</h2>
+<toaster-container [toasterconfig]="config"></toaster-container>
+<nb-card *ngFor="let admission of admissions">
+  <nb-card-header>
+    <div class="header-container">
+      <div class="header-title">{{ admission.program_name }}</div>
+      <div class="header-content">{{ admission.area }}</div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="body-title">Identificador:</div>
+        <div class="body-content">{{ admission.id }}</div>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="body-title">Nombre:</div>
+        <div class="body-content">{{ admission.fullname }}</div>
+      </div>
+      <div class="col-sm-6">
+        <div class="body-title">Tipo de Admision:</div>
+        <div class="body-content">{{ admission.type }}</div>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="body-title">Correo:</div>
+        <div class="body-content">{{ admission.email }}</div>
+      </div>
+      <div class="col-sm-6">
+        <div class="body-title">Estado de Admision:</div>
+        <div class="body-content">
+          <span class="dot"
+                [ngClass]="{'primary': admission.status === 'Aceptada',
+                            'warning': admission.status === 'En revisión',
+                            'danger': admission.status === 'Declinada'}">
+          </span>
+          {{ admission.status }}
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <nb-actions fullWidth size="medium">
+      <nb-action (click)="onAcceptOrDeclineAdmission(admission.admission_id, 'Aceptada')">
+        <i class="nb-paper-plane"></i><span>Aceptar</span>
+      </nb-action>
+      <nb-action (click)="onAcceptOrDeclineAdmission(admission.admission_id, 'Declinada')">
+        <i class="nb-trash"></i><span>Declinar</span>
+      </nb-action>
+    </nb-actions>
+  </nb-card-footer>
+</nb-card>

@@ -50,4 +50,14 @@ export class AdmissionsService {
     return this.http.get(GetEndPointFullPath('/admissions/new'),
                          this.httpOptions);
   }
+
+  onAcceptOrDeclineAdmission(admission_id: number, status_name: string): Observable<any> {
+    const admission_data = {
+      admission_id, status_name,
+    };
+
+    return this.http.patch(GetEndPointFullPath('/admissions/'),
+                           admission_data,
+                           this.httpOptions);
+  }
 }
