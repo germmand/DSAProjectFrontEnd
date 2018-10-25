@@ -5,6 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { getId } from '../../../@core/store/user';
 import { switchMap } from 'rxjs/operators';
 import { IAdmission } from './IAdmission';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-my-programs',
@@ -17,7 +18,9 @@ export class MyProgramsComponent implements OnInit {
   public review_admissions: IAdmission[];
 
   constructor(private admissionsService: AdmissionsService,
-              private store: Store<IAppState>) {
+              private store: Store<IAppState>,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -36,6 +39,7 @@ export class MyProgramsComponent implements OnInit {
   }
 
   onAdmissionClicked(admission: IAdmission) {
-    alert(`You've clicked admission ${admission.admission_id}`);
+    this.router.navigate(['../my-admission', admission.admission_id],
+                  { relativeTo: this.route });
   }
 }
