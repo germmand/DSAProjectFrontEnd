@@ -16,6 +16,14 @@
       </div>
     </div>
   </nb-card-body>
+  <nb-card-footer *ngIf="hasFooter">
+    <nb-actions fullWidth
+                size="medium">
+      <nb-action (click)="onInspectActionClicked(admission)">
+        <i class="nb-paper-plane"></i><span>Inspeccionar</span>
+      </nb-action>
+    </nb-actions>
+  </nb-card-footer>
 </nb-card>
 <div class="no-admissions-container"
      *ngIf="admissions.length === 0">

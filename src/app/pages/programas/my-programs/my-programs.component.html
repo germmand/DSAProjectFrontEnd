@@ -5,7 +5,9 @@
       </ngx-admission-adapter>
     </nb-tab>
     <nb-tab tabTitle="Aceptadas">
-      <ngx-admission-adapter [admissions]="accepted_admissions">
+      <ngx-admission-adapter [admissions]="accepted_admissions"
+                             hasFooter
+                             (onAdmissionClicked)="onAdmissionClicked($event)">
       </ngx-admission-adapter>
     </nb-tab>
     <nb-tab tabTitle="Declinadas">

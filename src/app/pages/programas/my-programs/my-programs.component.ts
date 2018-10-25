@@ -34,4 +34,8 @@ export class MyProgramsComponent implements OnInit {
       alert(exception.error['error']);
     });
   }
+
+  onAdmissionClicked(admission: IAdmission) {
+    alert(`You've clicked admission ${admission.admission_id}`);
+  }
 }
