@@ -1,1 +1,62 @@
-<h2>Hello from My-Admission! :D</h2>
+<nb-card>
+  <nb-card-header>Materias posibles a Inscribir</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-2 table-header">ID</div>
+      <div class="col-sm-2 table-header">Nombre</div>
+      <div class="col-sm-1 table-header">Créditos</div>
+      <div class="col-sm-1 table-header">Semestre</div>
+      <div class="col-sm-2 table-header">Semanas</div>
+      <div class="col-sm-2 table-header">Horas/Semana</div>
+      <div class="col-sm-2 table-header">Acciones</div>
+    </div>
+    <div class="row" *ngFor="let subject of subjectsToSignup">
+      <div class="col-sm-2 table-cell">{{ subject.id }}</div>
+      <div class="col-sm-2 table-cell">{{ subject.name }}</div>
+      <div class="col-sm-1 table-cell">{{ subject.credits }}</div>
+      <div class="col-sm-1 table-cell">{{ subject.subject_semester }}</div>
+      <div class="col-sm-2 table-cell">{{ subject.weeks }}</div>
+      <div class="col-sm-2 table-cell">{{ subject.hours_per_week }}</div>
+      <div class="col-sm-2 table-cell">
+        <button class="btn btn-hero-primary btn-cell" (click)="onSignupSubject(subject)">Inscribir</button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<nb-card>
+  <nb-card-header>Materias listas a Inscribir</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-2 table-header">ID</div>
+      <div class="col-sm-2 table-header">Nombre</div>
+      <div class="col-sm-1 table-header">Créditos</div>
+      <div class="col-sm-1 table-header">Semestre</div>
+      <div class="col-sm-2 table-header">Semanas</div>
+      <div class="col-sm-2 table-header">Horas/Semana</div>
+      <div class="col-sm-2 table-header">Acciones</div>
+    </div>
+    <div class="row" *ngFor="let subject of subjectsSignedUp">
+      <div class="col-sm-2 table-cell">{{ subject.id }}</div>
+      <div class="col-sm-2 table-cell">{{ subject.name }}</div>
+      <div class="col-sm-1 table-cell">{{ subject.credits }}</div>
+      <div class="col-sm-1 table-cell">{{ subject.subject_semester }}</div>
+      <div class="col-sm-2 table-cell">{{ subject.weeks }}</div>
+      <div class="col-sm-2 table-cell">{{ subject.hours_per_week }}</div>
+      <div class="col-sm-2 table-cell">
+        <button class="btn btn-hero-danger" (click)="onRemoveSubject(subject)" size="15px">Remover</button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<nb-card>
+  <nb-actions fullWidth size="medium">
+    <nb-action (click)="onProceeding()">
+      <i class="nb-paper-plane"></i><span>Proceder</span>
+    </nb-action>
+    <nb-action>
+      <i class="nb-compose" (click)="onSummary()"></i><span>Resumen</span>
+    </nb-action>
+  </nb-actions>
+</nb-card>

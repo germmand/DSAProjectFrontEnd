@@ -1,5 +1,68 @@
 @import '../../../@theme/styles/themes';
+@import '~@nebular/theme/styles/global/bootstrap/buttons';
+
+@mixin title($font-size: 1rem) {
+  font-family: nb-theme(font-secondary);
+  font-size: $font-size;
+  font-weight: nb-theme(font-weight-bold);
+  color: nb-theme(color-fg-heading);
+  @content;
+}
+
+@mixin content($font-size: 0.75rem) {
+  font-size: $font-size;
+  margin-top: 10px;
+  font-weight: nb-theme(font-weight-bold);
+  color: nb-theme(color-fg);
+  @content;
+}
 
 @include nb-install-component() {
+  nb-card {
+    margin: 10px;
+    padding: 10px;
+  }
 
+  .table-header {
+    @include title(1.25rem);
+  }
+
+  .table-cell {
+    @include content(1.15rem);
+  }
+
+  nb-action {
+    padding: 0 0.5rem 0 0;
+
+    i {
+      color: nb-theme(color-fg);
+      font-size: 3rem;
+      margin-right: 0.5rem;
+      transition: color ease-out 0.2s;
+
+      @include nb-for-theme(corporate) {
+        color: nb-theme(actions-fg);
+      }
+    }
+
+    span {
+      font-family: nb-theme(font-secondary);
+      font-weight: nb-theme(font-weight-bold);
+      color: nb-theme(color-fg);
+      text-transform: uppercase;
+      transition: color ease-out 0.2s;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      span {
+        color: nb-theme(color-fg-heading);
+      }
+
+      i {
+        color: nb-theme(color-fg-heading);
+      }
+    }
+  }
 }

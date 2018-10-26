@@ -10,6 +10,7 @@ import { ToasterModule } from 'angular2-toaster';
 import { MyProgramsComponent } from './my-programs/my-programs.component';
 import { AdmissionAdapterComponent } from './my-programs/admission-adapter/admission-adapter.component';
 import { MyAdmissionComponent } from './my-admission/my-admission.component';
+import { SubjectsService } from '../../@core/data/subjects.service';
 
 const PROGRAMAS_COMPONENTS = [
   ProgramasComponent,
@@ -23,6 +24,7 @@ const PROGRAMAS_COMPONENTS = [
 const PROGRAMAS_PROVIDERS = [
   AreasService,
   ProgramsService,
+  SubjectsService,
 ];
 
 
