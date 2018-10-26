@@ -1,0 +1,13 @@
+<nb-card>
+  <nb-tabset fullWidth>
+    <nb-tab tabTitle="Cursando">
+      <ngx-summary-adapter [subjects]="takingSubjects"></ngx-summary-adapter>
+    </nb-tab>
+    <nb-tab tabTitle="Cursados">
+      <ngx-summary-adapter [subjects]="takenSubjects"></ngx-summary-adapter>
+    </nb-tab>
+    <nb-tab tabTitle="Por cursar">
+      <ngx-summary-adapter [subjects]="willtakeSubjects"></ngx-summary-adapter>
+    </nb-tab>
+  </nb-tabset>
+</nb-card>

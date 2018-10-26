@@ -19,4 +19,9 @@ export class SubjectsService {
     return this.http.get(GetEndPointFullPath(`/subjects/${admission_id}`),
                          this.httpOptions);
   }
+
+  onGetAllSubjects(admission_id): Observable<any> {
+    return this.http.get(GetEndPointFullPath(`/subjects/all/${admission_id}`),
+                         this.httpOptions);
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
-import { IAdmission } from '../IAdmission';
+import { IAdmission } from '../../@interfaces/IAdmission';
 
 @Component({
   selector: 'ngx-admission-adapter',

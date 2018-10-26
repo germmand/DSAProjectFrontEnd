@@ -4,7 +4,7 @@ import { IAppState } from '../../../@core/store/app.reducer';
 import { Store, select } from '@ngrx/store';
 import { getId } from '../../../@core/store/user';
 import { switchMap } from 'rxjs/operators';
-import { IAdmission } from './IAdmission';
+import { IAdmission } from '../@interfaces/IAdmission';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

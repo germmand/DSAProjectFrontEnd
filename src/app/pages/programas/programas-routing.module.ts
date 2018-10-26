@@ -5,6 +5,7 @@ import { AreasComponent } from './areas/areas.component';
 import { ProgramaComponent } from './programa/programa.component';
 import { MyProgramsComponent } from './my-programs/my-programs.component';
 import { MyAdmissionComponent } from './my-admission/my-admission.component';
+import { AdmissionSummaryComponent } from './admission-summary/admission-summary.component';
 
 const routes: Routes = [{
   path: '',
@@ -21,6 +22,9 @@ const routes: Routes = [{
   }, {
     path: 'my-admission/:id',
     component: MyAdmissionComponent,
+  }, {
+    path: 'admission-summary/:id',
+    component: AdmissionSummaryComponent,
   }, {
     path: '',
     redirectTo: 'areas',

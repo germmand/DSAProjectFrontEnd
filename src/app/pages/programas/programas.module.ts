@@ -11,6 +11,9 @@ import { MyProgramsComponent } from './my-programs/my-programs.component';
 import { AdmissionAdapterComponent } from './my-programs/admission-adapter/admission-adapter.component';
 import { MyAdmissionComponent } from './my-admission/my-admission.component';
 import { SubjectsService } from '../../@core/data/subjects.service';
+import { AdmissionSummaryComponent } from './admission-summary/admission-summary.component';
+import { SummaryAdapterComponent } from './admission-summary/summary-adapter/summary-adapter.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 const PROGRAMAS_COMPONENTS = [
   ProgramasComponent,
@@ -19,6 +22,8 @@ const PROGRAMAS_COMPONENTS = [
   MyProgramsComponent,
   AdmissionAdapterComponent,
   MyAdmissionComponent,
+  AdmissionSummaryComponent,
+  SummaryAdapterComponent,
 ];
 
 const PROGRAMAS_PROVIDERS = [
@@ -33,6 +38,7 @@ const PROGRAMAS_PROVIDERS = [
     ProgramasRoutingModule,
     ThemeModule,
     ToasterModule.forRoot(),
+    Ng2SmartTableModule,
   ],
   declarations: [
     ...PROGRAMAS_COMPONENTS,

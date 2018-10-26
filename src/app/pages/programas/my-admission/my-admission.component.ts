@@ -1,16 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { SubjectsService } from '../../../@core/data/subjects.service';
-
-interface ISubject {
-  id: number;
-  name: string;
-  subject_semester: number;
-  credits: number;
-  hours_per_week: number;
-  weeks: number;
-}
+import { ISubject } from '../@interfaces';
 
 @Component({
   selector: 'ngx-my-admission',
@@ -22,6 +14,7 @@ export class MyAdmissionComponent implements OnInit {
   public subjectsSignedUp: ISubject[];
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private subjectsService: SubjectsService) {
     this.subjectsSignedUp = [];
   }
@@ -54,10 +47,16 @@ export class MyAdmissionComponent implements OnInit {
   }
 
   onSummary(): void {
-
+    this.route.paramMap.pipe(
+      switchMap((paramMap: ParamMap) => {
+        return paramMap.get('id');
+      }),
+    ).subscribe(id => {
+      this.router.navigate(['../../admission-summary', id],
+                     { relativeTo: this.route });
+    });
   }
 
   onProceeding(): void {
-
   }
 }
