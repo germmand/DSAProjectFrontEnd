@@ -14,6 +14,8 @@ import { SubjectsService } from '../../@core/data/subjects.service';
 import { AdmissionSummaryComponent } from './admission-summary/admission-summary.component';
 import { SummaryAdapterComponent } from './admission-summary/summary-adapter/summary-adapter.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { TokenInterceptor } from '../../@core/interceptors/token.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const PROGRAMAS_COMPONENTS = [
   ProgramasComponent,
@@ -30,6 +32,9 @@ const PROGRAMAS_PROVIDERS = [
   AreasService,
   ProgramsService,
   SubjectsService,
+  // The reason why we need to re-import the interceptor here is because
+  // somehow Ng2SmartTableModule invalidate the interceptor provided on CoreModule.
+  { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
 ];
 
 
@@ -48,5 +53,4 @@ const PROGRAMAS_PROVIDERS = [
   ],
 })
 export class ProgramasModule {
-
 }
