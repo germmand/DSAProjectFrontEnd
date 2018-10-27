@@ -1,15 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { LocalDataSource } from 'ng2-smart-table';
-import { ISubjectSummary } from '../../@interfaces';
+import { Component, Input } from '@angular/core';
+import { ISubject } from '../../@interfaces';
 
 @Component({
   selector: 'ngx-summary-adapter',
   templateUrl: './summary-adapter.component.html',
   styleUrls: ['./summary-adapter.component.scss'],
 })
-export class SummaryAdapterComponent implements OnInit {
-  @Input() public subjects: ISubjectSummary[] = [];
-  public tableSource: LocalDataSource = new LocalDataSource();
+export class SummaryAdapterComponent {
+  @Input() public subjects: ISubject[] = [];
   public tableSettings: any = {
     actions: false,
     noDataMessage: 'No hay materias que cargar acá...',
@@ -42,9 +40,5 @@ export class SummaryAdapterComponent implements OnInit {
   };
 
   constructor() {
-  }
-
-  ngOnInit() {
-    this.tableSource.load(this.subjects.map(s => s.subject));
   }
 }

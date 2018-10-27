@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { SubjectsService } from '../../../@core/data/subjects.service';
-import { ISubjectSummary } from '../@interfaces';
+import {ISubject, ISubjectSummary} from '../@interfaces';
 
 @Component({
   selector: 'ngx-admission-summary',
@@ -10,9 +10,9 @@ import { ISubjectSummary } from '../@interfaces';
   styleUrls: ['./admission-summary.component.scss'],
 })
 export class AdmissionSummaryComponent implements OnInit {
-  public takenSubjects: ISubjectSummary[];
-  public takingSubjects: ISubjectSummary[];
-  public willtakeSubjects: ISubjectSummary[];
+  public takenSubjects: ISubject[];
+  public takingSubjects: ISubject[];
+  public willtakeSubjects: ISubject[];
 
   constructor(private route: ActivatedRoute,
               private subjectsService: SubjectsService) {
@@ -27,9 +27,9 @@ export class AdmissionSummaryComponent implements OnInit {
         return this.subjectsService.onGetAllSubjects(id);
       }),
     ).subscribe(response => {
-      this.takenSubjects = response['taken_subjects'];
-      this.takingSubjects = response['taking_subjects'];
-      this.willtakeSubjects = response['willtake_subjects'];
+      this.takenSubjects = (<ISubjectSummary[]>response['taken_subjects']).map(s => s.subject);
+      this.takingSubjects = (<ISubjectSummary[]>response['taking_subjects']).map(s => s.subject);
+      this.willtakeSubjects = (<ISubjectSummary[]>response['willtake_subjects']).map(s => s.subject);
     });
   }
 }
