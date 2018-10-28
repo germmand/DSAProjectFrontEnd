@@ -1,1 +1,35 @@
-<div>Hello from user-profile!</div>
+<nb-card>
+  <nb-card-header>
+    <nb-user [name]="user?.fullname"></nb-user>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="body-title">Cédula/ID:</div>
+        <div class="body-sub-title">{{ user.id }}</div>
+      </div>
+      <div class="col-sm-6">
+        <div class="body-title">Nombre Completo:</div>
+        <div class="body-sub-title">{{ user.fullname }}</div>
+      </div>
+    </div>
+    <hr width="99%"/>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="body-title">Email/Correo:</div>
+        <div class="body-sub-title">{{ user.email }}</div>
+      </div>
+      <div class="col-sm-6">
+        <div class="body-title">Rol:</div>
+        <div class="body-sub-title">{{ user.role }}</div>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <nb-actions fullWidth size="medium">
+      <nb-action (click)="onProceedEditing()">
+        <i class="nb-edit"></i><span>Editar</span>
+      </nb-action>
+    </nb-actions>
+  </nb-card-footer>
+</nb-card>
