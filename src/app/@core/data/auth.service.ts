@@ -45,4 +45,24 @@ export class AuthService {
           });
       }));
   }
+
+  onLogoutAccess(): Observable<any> {
+    // The authorization header is appended in the Http Interceptor.
+    return this.http.get(GetEndPointFullPath('/auth/access/logout'),
+                         this.httpOptions);
+  }
+
+  onLogoutRefresh(): Observable<any> {
+    return this.store.pipe(
+      select(getRefreshToken),
+      first(),
+      switchMap(refresh_token => {
+        return this.http.get(GetEndPointFullPath('/auth/refresh/logout'), {
+          headers: new HttpHeaders({
+            'Authorization': 'Bearer ' + refresh_token,
+          }),
+        });
+      }),
+    );
+  }
 }
