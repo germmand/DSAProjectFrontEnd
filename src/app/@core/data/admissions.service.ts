@@ -6,6 +6,7 @@ import { select, Store } from '@ngrx/store';
 import { getId } from '../store/user';
 import { switchMap } from 'rxjs/operators';
 import { GetEndPointFullPath } from '../utils/api.config';
+import { ISubject } from '../../pages/programas/@interfaces';
 
 @Injectable()
 export class AdmissionsService {
@@ -59,5 +60,12 @@ export class AdmissionsService {
     return this.http.patch(GetEndPointFullPath('/admissions/'),
                            admission_data,
                            this.httpOptions);
+  }
+
+  onUpdateSubjects(admission_id: number, subjects: ISubject[], status_name: string): Observable<any> {
+    return this.http.patch(GetEndPointFullPath(`/admissions/${admission_id}/update-subjects`), {
+      status_name: status_name,
+      subjects_id: subjects.map(s => s.id),
+    }, this.httpOptions);
   }
 }
