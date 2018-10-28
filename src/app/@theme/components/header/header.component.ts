@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
 
   userMenu = [{
     title: 'Mi Perfil',
-    link: '/' ,
+    link: '/pages/user/my-profile' ,
   }, {
     title: 'Cerrar Sesión',
     link: '/auth/logout',

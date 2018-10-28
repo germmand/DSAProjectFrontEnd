@@ -44,7 +44,7 @@ export const MENU_ITEMS: NbMenuCustomItem[] = [
   {
     title: 'Mi Perfil',
     icon: 'nb-person',
-    link: '/',
+    link: '/pages/user/my-profile',
     type: 'Estudiante',
   },
 ];
