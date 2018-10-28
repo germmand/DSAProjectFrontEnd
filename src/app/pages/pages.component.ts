@@ -33,11 +33,15 @@ export class PagesComponent implements OnInit {
         this.menu.push({
           title: 'PANEL DE ADMINISTRADOR',
           group: true,
+          type: 'Administrador',
         }, {
           title: 'Nuevas Admisiones',
           icon: 'nb-compose',
           link: '/pages/admin/new-admissions',
+          type: 'Administrador',
         });
+      } else if (role !== 'Administrador' && alreadyAdded) {
+        _.remove(this.menu, m => m.type === 'Administrador');
       }
     });
 
