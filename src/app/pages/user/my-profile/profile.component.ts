@@ -5,13 +5,8 @@ import { IAppState } from '../../../@core/store/app.reducer';
 import { getId } from '../../../@core/store/user';
 import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IUser } from '../@interfaces/IUser';
 
-interface IUser {
-  id: string;
-  email: string;
-  fullname: string;
-  role: string;
-}
 
 @Component({
   selector: 'ngx-user-profile',

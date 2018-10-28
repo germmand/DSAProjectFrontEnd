@@ -1,5 +1,49 @@
 @import '../../../@theme/styles/themes';
 
 @include nb-install-component() {
+  .custom-invalid-feedback > * {
+    color: #ad0404;
+  }
 
+  .custom-is-invalid {
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #ad0404;
+    border-width: 2px;
+  }
+
+  nb-action {
+    padding: 0 0.5rem 0 0;
+
+    i {
+      color: nb-theme(color-fg);
+      font-size: 3rem;
+      margin-right: 0.5rem;
+      transition: color ease-out 0.2s;
+
+      @include nb-for-theme(corporate) {
+        color: nb-theme(actions-fg);
+      }
+    }
+
+    span {
+      font-family: nb-theme(font-secondary);
+      font-weight: nb-theme(font-weight-bold);
+      color: nb-theme(color-fg);
+      text-transform: uppercase;
+      transition: color ease-out 0.2s;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      span {
+        color: nb-theme(color-fg-heading);
+      }
+
+      i {
+        color: nb-theme(color-fg-heading);
+      }
+    }
+  }
 }
