@@ -48,4 +48,10 @@ export class UserService {
     return this.http.get(GetEndPointFullPath(`/users/${id}`),
                          this.httpOptions);
   }
+
+  onUpdateUser(id: string, newUserData: any): Observable<any> {
+    return this.http.put(GetEndPointFullPath(`/users/${id}`),
+                         newUserData,
+                         this.httpOptions);
+  }
 }

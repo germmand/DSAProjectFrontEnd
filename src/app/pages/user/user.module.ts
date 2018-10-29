@@ -4,6 +4,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
 import { ProfileComponent } from './my-profile/profile.component';
 import { ProfileEditorComponent } from './my-profile-editor/profile-editor.component';
+import { ToasterModule } from 'angular2-toaster';
 
 const USER_COMPONENTS = [
   UserComponent,
@@ -15,6 +16,7 @@ const USER_COMPONENTS = [
   imports: [
     ThemeModule,
     UserRoutingModule,
+    ToasterModule.forRoot(),
   ],
   declarations: [
     ...USER_COMPONENTS,

@@ -35,7 +35,8 @@ export class TokenInterceptor implements HttpInterceptor {
 
           switch (errorResponse.status) {
             case 401:
-              if (req.url.includes('/auth/login')) {
+              // msg - The key Flask-JWT-Extended returns when an error occurred.
+              if (req.url.includes('/auth/login') || errorResponse.error['msg'] === undefined) {
                 return throwError(errorResponse);
               }
 
