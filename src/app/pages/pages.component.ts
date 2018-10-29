@@ -39,6 +39,11 @@ export class PagesComponent implements OnInit {
           icon: 'nb-compose',
           link: '/pages/admin/new-admissions',
           type: 'Administrador',
+        }, {
+          title: 'Manejar Cursos',
+          icon: 'nb-gear',
+          link: '/pages/admin/handle-courses',
+          type: 'Administrador',
         });
       } else if (role !== 'Administrador' && alreadyAdded) {
         _.remove(this.menu, m => m.type === 'Administrador');
