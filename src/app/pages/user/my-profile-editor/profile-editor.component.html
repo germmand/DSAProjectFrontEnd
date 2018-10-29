@@ -10,7 +10,10 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <label for="inputFullname">Nombre Completo:</label>
-                <input type="text" id="inputFullname" class="form-control" placeholder="Nombre Completo" formControlName="fullname"/>
+                <input type="text" id="inputFullname" class="form-control" placeholder="Nombre Completo" formControlName="fullName" [ngClass]="{'custom-is-invalid': formSubmitted && editorForm.fullName.errors}"/>
+                <div *ngIf="formSubmitted && editorForm.fullName.errors" class="custom-invalid-feedback">
+                  <div *ngIf="editorForm.fullName.errors.required">El nombre completo es requerido.</div>
+                </div>
               </div>
             </div>
           </div>
@@ -18,7 +21,11 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <label for="inputEmail">Correo/Email:</label>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email" formControlName="email"/>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email" formControlName="email" [ngClass]="{'custom-is-invalid': formSubmitted && editorForm.email.errors}"/>
+                <div *ngIf="formSubmitted && editorForm.email.errors" class="custom-invalid-feedback">
+                  <div *ngIf="editorForm.email.errors.required">El correo es requerido.</div>
+                  <div *ngIf="editorForm.email.errors.email">El email debe ser válido.</div>
+                </div>
               </div>
             </div>
           </div>
@@ -26,13 +33,19 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputNewPassword">Nueva Contraseña:</label>
-                <input type="password" id="inputNewPassword" class="form-control" placeholder="Nueva Contraseña" formControlName="newPassword"/>
+                <input type="password" id="inputNewPassword" class="form-control" placeholder="Nueva Contraseña" formControlName="newPassword" [ngClass]="{'custom-is-invalid': formSubmitted && editorForm.newPassword.errors}"/>
+                <div *ngIf="formSubmitted && editorForm.newPassword.errors" class="custom-invalid-feedback">
+                  <div *ngIf="editorForm.newPassword.errors.minlength">La contraseña debe tener al menos 6 caracteres.</div>
+                </div>
               </div>
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="inputConfirmNewPassword">Confirmar Contraseña:</label>
-                <input type="password" id="inputConfirmNewPassword" class="form-control" placeholder="Confirmar Contraseña" formControlName="confirmNewPassword"/>
+                <input type="password" id="inputConfirmNewPassword" class="form-control" placeholder="Confirmar Contraseña" formControlName="confirmNewPassword" [ngClass]="{'custom-is-invalid': formSubmitted && profileEditorForm.errors?.matchpassword}"/>
+                <div *ngIf="formSubmitted && profileEditorForm.errors?.matchpassword" class="custom-invalid-feedback">
+                  <div *ngIf="profileEditorForm.errors?.matchpassword">Las contraseñas no coinciden.</div>
+                </div>
               </div>
             </div>
           </div>
@@ -40,7 +53,10 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <label for="currentPassword">Contraseña Actual:</label>
-                <input type="password" id="currentPassword" class="form-control" placeholder="Contraseña Actual" formControlName="currentPassword"/>
+                <input type="password" id="currentPassword" class="form-control" placeholder="Contraseña Actual" formControlName="currentPassword" [ngClass]="{'custom-is-invalid': formSubmitted && editorForm.currentPassword.errors}"/>
+                <div *ngIf="formSubmitted && editorForm.currentPassword.errors" class="custom-invalid-feedback">
+                  <div *ngIf="editorForm.currentPassword.errors.required">Debe introducir la contraseña actual para continuar.</div>
+                </div>
               </div>
             </div>
           </div>

@@ -16,18 +16,20 @@ import { MatchPasswordValidator } from '../../../@core/validators/MatchPasswordV
 export class ProfileEditorComponent implements OnInit {
   public user: IUser;
   public profileEditorForm: FormGroup;
+  public formSubmitted: boolean;
 
   constructor(private store: Store<IAppState>,
               private usersService: UserService) {
     this.profileEditorForm = new FormGroup({
-      fullname: new FormControl('', [Validators.required]),
+      fullName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      newPassword: new FormControl(''),
+      newPassword: new FormControl('', [Validators.minLength(6)]),
       confirmNewPassword: new FormControl(''),
       currentPassword: new FormControl('', [Validators.required]),
     }, [
       MatchPasswordValidator('newPassword', 'confirmNewPassword'),
     ]);
+    this.formSubmitted = false;
   }
 
   ngOnInit() {
@@ -38,11 +40,20 @@ export class ProfileEditorComponent implements OnInit {
       }),
     ).subscribe(response => {
       this.user = <IUser>response;
-      this.profileEditorForm.controls['fullname'].setValue(this.user.fullname);
+      this.profileEditorForm.controls['fullName'].setValue(this.user.fullname);
       this.profileEditorForm.controls['email'].setValue(this.user.email);
     });
   }
 
+  get editorForm(): any {
+    return this.profileEditorForm.controls;
+  }
+
   onSaveNewProfile() {
+    this.formSubmitted = true;
+
+    if (this.profileEditorForm.valid) {
+      return;
+    }
   }
 }
