@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IArea } from './@interfaces';
 
 @Component({
   selector: 'ngx-handle-courses',
@@ -7,5 +8,8 @@ import { Component } from '@angular/core';
 })
 export class HandleCoursesComponent {
   constructor() {
+  }
+
+  onNewAreaAdded(newArea: IArea) {
   }
 }

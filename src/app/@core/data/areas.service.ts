@@ -19,4 +19,10 @@ export class AreasService {
     return this.http.get(GetEndPointFullPath('/areas/'),
                          this.httpOptions);
   }
+
+  onCreateNewArea(newAreaData: any): Observable<any> {
+    return this.http.post(GetEndPointFullPath('/areas/'),
+                          newAreaData,
+                          this.httpOptions);
+  }
 }

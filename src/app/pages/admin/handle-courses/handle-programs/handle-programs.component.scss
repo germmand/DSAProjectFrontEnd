@@ -1,4 +1,8 @@
 @import '../../../../@theme/styles/themes';
+@import '../../../../@theme/styles/action-icon';
+@import '../../../../@theme/styles/custom-validators-feedback';
 
 @include nb-install-component() {
+  @include action-icon();
+  @include custom-validators-feedback();
 }

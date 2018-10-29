@@ -1,11 +1,26 @@
+<toaster-container [toasterconfig]="config"></toaster-container>
 <nb-card>
   <nb-card-header>
     Crear Nueva Area
   </nb-card-header>
   <nb-card-body>
-    Acá el layout para nueva área...
+    <form [formGroup]="newAreaForm">
+      <div class="form-group row">
+        <label for="inputNewArea" class="col-sm-3 col-form-label">Área:</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="inputNewArea" placeholder="Nueva Área..." formControlName="area_name" [ngClass]="{'custom-is-invalid': formSubmitted && areaForm.area_name.errors}">
+          <div *ngIf="formSubmitted && areaForm.area_name.errors" class="custom-invalid-feedback">
+            <div *ngIf="areaForm.area_name.errors.required">El nombre del área es requerido.</div>
+          </div>
+        </div>
+      </div>
+    </form>
   </nb-card-body>
   <nb-card-footer>
-    Acá los actions para crear la nueva área
+    <nb-actions fullWidth size="medium">
+      <nb-action (click)="onCreateNewArea()">
+        <i class="nb-compose"></i><span>Crear</span>
+      </nb-action>
+    </nb-actions>
   </nb-card-footer>
 </nb-card>
