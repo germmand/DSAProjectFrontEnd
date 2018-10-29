@@ -3,9 +3,34 @@
     Manejar Postgrados
   </nb-card-header>
   <nb-card-body>
-    Acá el layout para manejar los cursos.
+    <form [formGroup]="newCoursesForm">
+      <div class="form-group row">
+        <label for="selectedArea" class="col-sm-3 col-form-label">Área:</label>
+        <div class="col-sm-9">
+          <select class="form-control" id="selectedArea" formControlName="area_id">
+            <option value="" disabled selected>-- SELECCIONE UN ÁREA --</option>
+            <option *ngFor="let area of areas" [value]="area.area_id">{{ area.area_name }}</option>
+          </select>
+        </div>
+      </div>
+      <hr width="99%" />
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="btn-group">
+            <button [disabled]="coursesForm.area_id.value == ''" (click)="onAddingProgram()" type="button" class="btn btn-primary btn-group-icon btn-group-divider">
+              <i class="nb-plus"></i>
+            </button>
+            <button [disabled]="coursesForm.area_id.value == ''" (click)="onAddingProgram()" type="button" class="btn btn-primary">Agregar Postgrado</button>
+          </div>
+        </div>
+      </div>
+    </form>
   </nb-card-body>
   <nb-card-footer>
-    Acá los actions para manejar los cursos.
+    <nb-actions fullWidth size="medium">
+      <nb-action (click)="onAddingNewPrograms()">
+        <i class="nb-paper-plane"></i><span>Proceder</span>
+      </nb-action>
+    </nb-actions>
   </nb-card-footer>
 </nb-card>
