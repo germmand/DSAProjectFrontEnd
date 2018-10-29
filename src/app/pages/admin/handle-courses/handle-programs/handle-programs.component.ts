@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { IArea } from '../@interfaces';
 
 @Component({
@@ -9,6 +9,10 @@ import { IArea } from '../@interfaces';
 })
 export class HandleProgramsComponent implements OnInit {
   public newCoursesForm: FormGroup;
+  public programTypes: string[] = ['Semestral', 'Modular'];
+  public programDegrees: string[] = ['Maestría', 'Doctorado', 'Especialización'];
+  public programsSubmitted: boolean;
+
   @Input() areas: IArea[];
 
   constructor() {
@@ -17,13 +21,35 @@ export class HandleProgramsComponent implements OnInit {
   ngOnInit() {
     this.newCoursesForm = new FormGroup({
       area_id: new FormControl('', [Validators.required]),
+      area_programs: new FormArray([]),
     });
+    this.programsSubmitted = false;
   }
 
   onAddingProgram() {
+    this.coursesForm.area_programs.push(this.onCreateNewProgram());
   }
 
   onAddingNewPrograms() {
+    this.programsSubmitted = true;
+  }
+
+  onCreateNewProgram(): FormGroup {
+    return new FormGroup({
+      program_name: new FormControl('', [Validators.required]),
+      program_type: new FormControl('', [Validators.required]),
+      degree_type: new FormControl('', [Validators.required]),
+    });
+  }
+
+  onCreateNewSubject(): FormGroup {
+    return new FormGroup({
+      subject_name: new FormControl('', [Validators.required]),
+      credits: new FormControl('', [Validators.required]),
+      semester: new FormControl(''),
+      hours: new FormControl('', [Validators.required]),
+      weeks: new FormControl('', [Validators.required]),
+    });
   }
 
   get coursesForm(): any {

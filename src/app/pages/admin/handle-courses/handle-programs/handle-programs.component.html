@@ -13,6 +13,51 @@
           </select>
         </div>
       </div>
+      <div formArrayName="area_programs" *ngFor="let program of coursesForm.area_programs.controls; let i = index">
+        <hr width="99%" />
+        <div [formGroupName]="i">
+          <nb-card>
+            <nb-card-header>
+              {{ program.controls.program_name.value }}
+            </nb-card-header>
+            <nb-card-body>
+              <div class="form-group row">
+                <label for="inputNewProgram" class="col-sm-3 col-form-label">Nombre del Programa:</label>
+                <div class="col-sm-9">
+                  <input type="text" formControlName="program_name" class="form-control" id="inputNewProgram" placeholder="Nombre del Programa..." [ngClass]="{'custom-is-invalid': programsSubmitted && program.controls.program_name.errors}">
+                  <div *ngIf="programsSubmitted && program.controls.program_name.errors" class="custom-invalid-feedback">
+                    <div *ngIf="program.controls.program_name.errors.required">El nombre del programa es requerido.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="selectedType" class="col-sm-3 col-form-label">Tipo de Programa:</label>
+                <div class="col-sm-9">
+                  <select class="form-control" id="selectedType" formControlName="program_type" [ngClass]="{'custom-is-invalid': programsSubmitted && program.controls.program_type.errors}">
+                    <option value="" disabled selected>-- SELECCIONE UN TIPO --</option>
+                    <option *ngFor="let type of programTypes" [value]="type">{{ type }}</option>
+                  </select>
+                  <div *ngIf="programsSubmitted && program.controls.program_type.errors" class="custom-invalid-feedback">
+                    <div *ngIf="program.controls.program_type.errors.required">El tipo de programa es requerido.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="selectedDegree" class="col-sm-3 col-form-label">Grado del Programa:</label>
+                <div class="col-sm-9">
+                  <select class="form-control" id="selectedDegree" formControlName="degree_type" [ngClass]="{'custom-is-invalid': programsSubmitted && program.controls.degree_type.errors}">
+                    <option value="" disabled selected>-- SELECCIONE UN GRADO --</option>
+                    <option *ngFor="let degree of programDegrees" [value]="degree">{{ degree }}</option>
+                  </select>
+                  <div *ngIf="programsSubmitted && program.controls.degree_type.errors" class="custom-invalid-feedback">
+                    <div *ngIf="program.controls.degree_type.errors.required">El grado del programa es requerido.</div>
+                  </div>
+                </div>
+              </div>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </div>
       <hr width="99%" />
       <div class="row">
         <div class="col-sm-12">
