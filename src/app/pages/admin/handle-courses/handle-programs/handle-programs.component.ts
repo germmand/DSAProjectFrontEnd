@@ -34,11 +34,16 @@ export class HandleProgramsComponent implements OnInit {
     this.programsSubmitted = true;
   }
 
+  onAppendSubject(program: FormGroup) {
+    (<FormArray>program.controls.program_subjects).push(this.onCreateNewSubject());
+  }
+
   onCreateNewProgram(): FormGroup {
     return new FormGroup({
       program_name: new FormControl('', [Validators.required]),
       program_type: new FormControl('', [Validators.required]),
       degree_type: new FormControl('', [Validators.required]),
+      program_subjects: new FormArray([]),
     });
   }
 

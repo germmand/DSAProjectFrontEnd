@@ -5,4 +5,11 @@
 @include nb-install-component() {
   @include action-icon();
   @include custom-validators-feedback();
+
+  .append-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 }
