@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AreasService } from '../../../../@core/data/areas.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IArea } from '../@interfaces';
 
@@ -10,21 +9,15 @@ import { IArea } from '../@interfaces';
 })
 export class HandleProgramsComponent implements OnInit {
   public newCoursesForm: FormGroup;
-  public areas: IArea[];
+  @Input() areas: IArea[];
 
-  constructor(private areasService: AreasService) {
+  constructor() {
   }
 
   ngOnInit() {
     this.newCoursesForm = new FormGroup({
       area_id: new FormControl('', [Validators.required]),
     });
-
-    this.areasService
-      .onGetAllAreas()
-      .subscribe(response => {
-        this.areas = <IArea[]>response['areas'];
-      });
   }
 
   onAddingProgram() {
