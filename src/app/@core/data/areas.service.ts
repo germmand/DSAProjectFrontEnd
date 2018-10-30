@@ -25,4 +25,10 @@ export class AreasService {
                           newAreaData,
                           this.httpOptions);
   }
+
+  onAppendProgramsToArea(programsData: any): Observable<any> {
+    return this.http.patch(GetEndPointFullPath(`/areas/${programsData.area_id}`),
+                           programsData,
+                           this.httpOptions);
+  }
 }
