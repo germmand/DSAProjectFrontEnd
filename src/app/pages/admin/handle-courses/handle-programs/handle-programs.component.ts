@@ -32,6 +32,9 @@ export class HandleProgramsComponent implements OnInit {
 
   onAddingNewPrograms() {
     this.programsSubmitted = true;
+    if (!this.newCoursesForm.valid) {
+      return;
+    }
   }
 
   onAppendSubject(program: FormGroup) {

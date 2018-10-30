@@ -59,9 +59,45 @@
                   Materias
                 </nb-card-header>
                 <nb-card-body>
+                  <div class="row">
+                    <div class="col-sm-4 subject-title">Nombre:</div>
+                    <div class="col-sm-2 subject-title">Créditos:</div>
+                    <div class="col-sm-2 subject-title">Semestre:</div>
+                    <div class="col-sm-2 subject-title">Horas/Semana:</div>
+                    <div class="col-sm-2 subject-title">Semanas:</div>
+                  </div>
                   <div formArrayName="program_subjects" *ngFor="let subject of program.controls.program_subjects.controls; let k = index">
+                    <hr width="99%" />
                     <div [formGroupName]="k">
-                      <div>{{ k }}</div>
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <input type="text" class="form-control" placeholder="Nombre Materia..." formControlName="subject_name" [ngClass]="{'custom-is-invalid': programsSubmitted && subject.controls.subject_name.errors}"/>
+                          <div *ngIf="programsSubmitted && subject.controls.subject_name.errors" class="custom-invalid-feedback">
+                            <div *ngIf="subject.controls.subject_name.errors.required">El nombre es requerido.</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="number" class="form-control" placeholder="Créditos..." formControlName="credits" [ngClass]="{'custom-is-invalid': programsSubmitted && subject.controls.credits.errors}"/>
+                          <div *ngIf="programsSubmitted && subject.controls.credits.errors" class="custom-invalid-feedback">
+                            <div *ngIf="subject.controls.credits.errors.required">Los créditos son requeridos.</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="number" class="form-control" placeholder="Semestre..." formControlName="semester"/>
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="number" class="form-control" placeholder="Horas/Semana..." formControlName="hours" [ngClass]="{'custom-is-invalid': programsSubmitted && subject.controls.hours.errors}"/>
+                          <div *ngIf="programsSubmitted && subject.controls.hours.errors" class="custom-invalid-feedback">
+                            <div *ngIf="subject.controls.hours.errors.required">Las horas son requeridas.</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-2">
+                          <input type="number" class="form-control" placeholder="Semanas..." formControlName="weeks" [ngClass]="{'custom-is-invalid': programsSubmitted && subject.controls.weeks.errors}"/>
+                          <div *ngIf="programsSubmitted && subject.controls.weeks.errors" class="custom-invalid-feedback">
+                            <div *ngIf="subject.controls.weeks.errors.required">Las semanas son requeridas.</div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <hr width="99%" />

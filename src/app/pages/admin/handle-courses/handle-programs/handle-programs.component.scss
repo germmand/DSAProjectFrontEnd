@@ -12,4 +12,10 @@
     justify-content: center;
     align-items: center;
   }
+
+  .subject-title {
+    font-family: nb-theme(font-secondary);
+    font-weight: nb-theme(font-weight-bold);
+    color: nb-theme(card-fg-heading);
+  }
 }
