@@ -49,10 +49,7 @@ export class ProgramaComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.pipe(
       switchMap((paramMap: ParamMap) => {
-          return paramMap.get('id');
-      }),
-      switchMap(id => {
-        return this.programService.onGetProgram(id);
+          return this.programService.onGetProgram(paramMap.get('id'));
       }),
     ).subscribe(response => {
       this.program = response['program'];
@@ -77,10 +74,7 @@ export class ProgramaComponent implements OnInit {
         return this.route.paramMap;
       }),
       switchMap((paramMap: ParamMap) => {
-        return paramMap.get('id');
-      }),
-      switchMap(program_id => {
-        return this.admissionsService.onCreateAdmission(Number(program_id), this.user_id);
+        return this.admissionsService.onCreateAdmission(Number(paramMap.get('id')), this.user_id);
       }),
     ).subscribe(response => {
       const toast: Toast = {

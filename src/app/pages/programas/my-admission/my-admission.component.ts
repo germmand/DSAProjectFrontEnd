@@ -30,10 +30,7 @@ export class MyAdmissionComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.pipe(
       switchMap((paramMap: ParamMap) => {
-        return paramMap.get('id');
-      }),
-      switchMap(id => {
-        return this.subjectsService.onGetSubjecsToSignup(id);
+        return this.subjectsService.onGetSubjecsToSignup(paramMap.get('id'));
       }),
     ).subscribe(response => {
       this.subjectsToSignup = response['subjects'];
@@ -65,12 +62,9 @@ export class MyAdmissionComponent implements OnInit {
   }
 
   onSummary(): void {
-    this.route.paramMap.pipe(
-      switchMap((paramMap: ParamMap) => {
-        return paramMap.get('id');
-      }),
-    ).subscribe(id => {
-      this.router.navigate(['../../admission-summary', id],
+    this.route.paramMap
+      .subscribe((paramMap: ParamMap) => {
+        this.router.navigate(['../../admission-summary', paramMap.get('id')],
                      { relativeTo: this.route });
     });
   }
@@ -91,10 +85,7 @@ export class MyAdmissionComponent implements OnInit {
 
     this.route.paramMap.pipe(
       switchMap((paramMap: ParamMap) => {
-        return paramMap.get('id');
-      }),
-      switchMap(id => {
-        return this.admissionsService.onUpdateSubjects(Number(id), this.subjectsSignedUp, 'Cursando');
+        return this.admissionsService.onUpdateSubjects(Number(paramMap.get('id')), this.subjectsSignedUp, 'Cursando');
       }),
       switchMap(response => {
         const toast: Toast = {
@@ -113,10 +104,7 @@ export class MyAdmissionComponent implements OnInit {
         return throwError(error);
       }),
       switchMap(paramMap => {
-        return paramMap.get('id');
-      }),
-      switchMap(id => {
-        return this.subjectsService.onGetSubjecsToSignup(id);
+        return this.subjectsService.onGetSubjecsToSignup(paramMap.get('id'));
       }),
     ).subscribe(response => {
       this.subjectsToSignup = response['subjects'];

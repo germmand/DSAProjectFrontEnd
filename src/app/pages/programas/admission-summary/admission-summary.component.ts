@@ -21,10 +21,7 @@ export class AdmissionSummaryComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.pipe(
       switchMap((paramMap: ParamMap) => {
-        return paramMap.get('id');
-      }),
-      switchMap(id => {
-        return this.subjectsService.onGetAllSubjects(id);
+        return this.subjectsService.onGetAllSubjects(paramMap.get('id'));
       }),
     ).subscribe(response => {
       this.takenSubjects = (<ISubjectSummary[]>response['taken_subjects']).map(s => s.subject);
