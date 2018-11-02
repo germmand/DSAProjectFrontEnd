@@ -9,8 +9,6 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 import { DataModule } from './data/data.module';
 import { AnalyticsService } from './utils/analytics.service';
 import { CoreStoreModule } from './store/corestore.module';
-import { AuthService } from './data/auth.service';
-import { RolesService } from './data/roles.service';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 
 export class NbSimpleRoleProvider extends NbRoleProvider {
@@ -92,8 +90,6 @@ export const NB_CORE_PROVIDERS = [
   },
   ...APP_INTERCEPTORS,
   AnalyticsService,
-  AuthService,
-  RolesService,
 ];
 
 @NgModule({
